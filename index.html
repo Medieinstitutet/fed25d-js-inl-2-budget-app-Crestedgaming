@@ -21,7 +21,7 @@
 
     <label for="income-category"></label>
     <select id="income-category">
-      <!--Load from JSON-->
+      <option value="" disabled selected>Select category</option>
     </select>
 
     <button type="submit" id="add-income-btn">Add</button>
@@ -40,14 +40,14 @@
     <label for="expense-category"></label>
 
     <select id="expense-category">
-      <!--Load from JSON-->
+      <option value="" disabled selected>Select category</option>
     </select>
 
     <button id="add-expenses-btn">Add</button>
   </form>
 
   <div id="app"></div>
-  <script type="module" src="/src/main.js"></script>
+  <script type="module" src="/src/main.ts"></script>
 </body>
 
 </html>

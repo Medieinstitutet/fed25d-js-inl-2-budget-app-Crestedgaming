@@ -1,7 +1,13 @@
+// @ts-nocheck
+
 import './styles/style.scss';
+import categories from './categories.json';
+
+
 
 let incomes = [];
 let expenses = [];
+
 
 const incomeForm = document.getElementById('income-form');
 
@@ -48,3 +54,19 @@ const expense = {
 expenses.push(expense);
 console.log(expense);
 
+
+const incomeDropdown = document.querySelector('#income-category');
+if (incomeDropdown && categories.income) {
+  categories.income.forEach(category => {
+    incomeDropdown.innerHTML += `<option value="${category.value}">${category.text}</option>`;
+  });
+}
+
+const expenseDropdown = document.querySelector('#expense-category');
+if (expenseDropdown && categories.expenses) {
+  categories.expenses.forEach(category => {
+    expenseDropdown.innerHTML += `<option value="${category.value}">${category.text}</option>`;
+  });
+}
+
+console.log(categories);
