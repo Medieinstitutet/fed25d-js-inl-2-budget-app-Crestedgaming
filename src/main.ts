@@ -40,6 +40,7 @@ if (incomeForm) {
     const newIncome = { amount, description, category };
     incomes.push(newIncome);
     saveData();
+    writeToScreen();
 
     (incomeForm as HTMLFormElement).reset();
   });
@@ -58,6 +59,7 @@ if (expenseForm) {
     const newExpense = { amount, description, category };
     expenses.push(newExpense);
     saveData();
+    writeToScreen();
 
     (expenseForm as HTMLFormElement).reset();
   });
@@ -111,6 +113,16 @@ function writeToScreen() {
   expenseHtml += '</ul>';
   expenseListEl.innerHTML = expenseHtml;
 
+  const totalIncomeEl = document.querySelector('#total-income');
+const totalExpensesEl = document.querySelector('#total-expenses');
+const balanceEl = document.querySelector('#balance');
+
+const { totalIncome, totalExpenses, balance } = calculateTotals();
+
+totalIncomeEl.textContent = totalIncome.toString();
+totalExpensesEl.textContent = totalExpenses.toString();
+balanceEl.textContent = balance.toString();
+
   // Add delete listeners
   document.querySelectorAll('[data-income-id]').forEach(btn => {
     btn.addEventListener('click', deleteIncome);
@@ -123,7 +135,7 @@ function writeToScreen() {
 
 function deleteIncome(e) {
     const id = Number(e.target.dataset.incomeId);
-    incomes.spliced(id, 1);
+    incomes.splice(id, 1);
     saveData();
     writeToScreen();
 }
@@ -131,12 +143,25 @@ function deleteIncome(e) {
 
 function deleteExpense(e) {
     const id = Number(e.target.dataset.expenseId);
-    expenses.spliced(id, 1);
+    expenses.splice(id, 1);
     saveData();
     writeToScreen();
 }
 
-localData();
+function calculateTotals() {
+    const totalIncome = incomes.reduce((sum, income) => {
+        return sum + income.amount;
+    }, 0);
+
+    const totalExpenses = expenses.reduce((sum, expense) => {
+        return sum + expense.amount;
+    }, 0);
+
+    const balance = totalIncome - totalExpenses;
+
+    return { totalIncome, totalExpenses, balance };
+}
+
 writeToScreen();
 
 console.log(categories);
