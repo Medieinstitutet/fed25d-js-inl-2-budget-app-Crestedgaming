@@ -114,14 +114,14 @@ function writeToScreen() {
   expenseListEl.innerHTML = expenseHtml;
 
   const totalIncomeEl = document.querySelector('#total-income');
-const totalExpensesEl = document.querySelector('#total-expenses');
-const balanceEl = document.querySelector('#balance');
+  const totalExpensesEl = document.querySelector('#total-expenses');
+  const balanceEl = document.querySelector('#balance');
 
-const { totalIncome, totalExpenses, balance } = calculateTotals();
+  const { totalIncome, totalExpenses, balance } = calculateTotals();
 
-totalIncomeEl.textContent = totalIncome.toString();
-totalExpensesEl.textContent = totalExpenses.toString();
-balanceEl.textContent = balance.toString();
+  totalIncomeEl.textContent = totalIncome.toString();
+  totalExpensesEl.textContent = totalExpenses.toString();
+  balanceEl.textContent = balance.toString();
 
   // Add delete listeners
   document.querySelectorAll('[data-income-id]').forEach(btn => {
@@ -134,32 +134,32 @@ balanceEl.textContent = balance.toString();
 }
 
 function deleteIncome(e) {
-    const id = Number(e.target.dataset.incomeId);
-    incomes.splice(id, 1);
-    saveData();
-    writeToScreen();
+  const id = Number(e.target.dataset.incomeId);
+  incomes.splice(id, 1);
+  saveData();
+  writeToScreen();
 }
 
 
 function deleteExpense(e) {
-    const id = Number(e.target.dataset.expenseId);
-    expenses.splice(id, 1);
-    saveData();
-    writeToScreen();
+  const id = Number(e.target.dataset.expenseId);
+  expenses.splice(id, 1);
+  saveData();
+  writeToScreen();
 }
 
 function calculateTotals() {
-    const totalIncome = incomes.reduce((sum, income) => {
-        return sum + income.amount;
-    }, 0);
+  const totalIncome = incomes.reduce((sum, income) => {
+    return sum + income.amount;
+  }, 0);
 
-    const totalExpenses = expenses.reduce((sum, expense) => {
-        return sum + expense.amount;
-    }, 0);
+  const totalExpenses = expenses.reduce((sum, expense) => {
+    return sum + expense.amount;
+  }, 0);
 
-    const balance = totalIncome - totalExpenses;
+  const balance = totalIncome - totalExpenses;
 
-    return { totalIncome, totalExpenses, balance };
+  return { totalIncome, totalExpenses, balance };
 }
 
 writeToScreen();
