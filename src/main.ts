@@ -1,10 +1,11 @@
-// @ts-nocheck
 
 import './styles/style.scss';
 import categories from './categories.json';
+import { type IBudgetItem } from './models';
 
-let incomes = [];
-let expenses = [];
+
+let incomes: IBudgetItem[] = [];
+let expenses: IBudgetItem[] = [];
 
 function saveData() {
   localStorage.setItem('budgetData', JSON.stringify({ incomes, expenses }));
@@ -96,7 +97,7 @@ function writeToScreen() {
   });
 
   incomeHtml += '</ul>';
-  incomeListEl.innerHTML = incomeHtml;
+  if (incomeListEl) incomeListEl.innerHTML = incomeHtml;
 
   // Expenses
   let expenseHtml = '<ul>';
@@ -111,7 +112,7 @@ function writeToScreen() {
   });
 
   expenseHtml += '</ul>';
-  expenseListEl.innerHTML = expenseHtml;
+  if (expenseListEl) expenseListEl.innerHTML = expenseHtml;
 
   const totalIncomeEl = document.querySelector('#total-income');
   const totalExpensesEl = document.querySelector('#total-expenses');
@@ -119,9 +120,9 @@ function writeToScreen() {
 
   const { totalIncome, totalExpenses, balance } = calculateTotals();
 
-  totalIncomeEl.textContent = totalIncome.toString();
-  totalExpensesEl.textContent = totalExpenses.toString();
-  balanceEl.textContent = balance.toString();
+  if (totalIncomeEl) totalIncomeEl.textContent = totalIncome.toString();
+  if (totalExpensesEl) totalExpensesEl.textContent = totalExpenses.toString();
+  if (balanceEl) balanceEl.textContent = balance.toString();
 
   // Add delete listeners
   document.querySelectorAll('[data-income-id]').forEach(btn => {
@@ -133,16 +134,16 @@ function writeToScreen() {
   });
 }
 
-function deleteIncome(e) {
-  const id = Number(e.target.dataset.incomeId);
+function deleteIncome(e: Event) {
+  const id = Number((e.target as HTMLElement).dataset.incomeId);
   incomes.splice(id, 1);
   saveData();
   writeToScreen();
 }
 
 
-function deleteExpense(e) {
-  const id = Number(e.target.dataset.expenseId);
+function deleteExpense(e: Event) {
+  const id = Number((e.target as HTMLElement).dataset.expenseId);
   expenses.splice(id, 1);
   saveData();
   writeToScreen();
