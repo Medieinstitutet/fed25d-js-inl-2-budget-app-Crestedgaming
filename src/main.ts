@@ -1,13 +1,17 @@
 
 import './styles/style.scss';
 import categories from './categories.json';
-import { type IBudgetItem } from './models';
+import { type IBudgetItem, type IBudgetData } from './models';
 
 
 let incomes: IBudgetItem[] = [];
 let expenses: IBudgetItem[] = [];
 
 function saveData() {
+  const data: IBudgetData = {
+    incomes,
+    expenses
+  };
   localStorage.setItem('budgetData', JSON.stringify({ incomes, expenses }));
 }
 
@@ -15,7 +19,7 @@ function loadData() {
   const raw = localStorage.getItem('budgetData');
   if (!raw) return;
   try {
-    const data = JSON.parse(raw);
+    const data: IBudgetData = JSON.parse(raw);
     incomes = data.incomes || [];
     expenses = data.expenses || [];
   } catch (e) {
@@ -89,7 +93,7 @@ function writeToScreen() {
 
   incomes.forEach((income, index) => {
     incomeHtml += `
-      <li>
+      <li class="income-item">
         ${income.description} – ${income.amount} kr (${income.category})
         <button data-income-id="${index}">Delete</button>
       </li>
@@ -104,7 +108,7 @@ function writeToScreen() {
 
   expenses.forEach((expense, index) => {
     expenseHtml += `
-      <li>
+      <li class="expense-item">
         ${expense.description} – ${expense.amount} kr (${expense.category})
         <button data-expense-id="${index}">Delete</button>
       </li>
@@ -122,7 +126,18 @@ function writeToScreen() {
 
   if (totalIncomeEl) totalIncomeEl.textContent = totalIncome.toString();
   if (totalExpensesEl) totalExpensesEl.textContent = totalExpenses.toString();
-  if (balanceEl) balanceEl.textContent = balance.toString();
+
+  if (balanceEl) {
+    balanceEl.textContent = balance.toString();
+    balanceEl.classList.remove('positive', 'negative', 'neutral');
+    if (balance > 0) {
+      balanceEl.classList.add('positive');
+    } else if (balance < 0) {
+      balanceEl.classList.add('negative');
+    } else {
+      balanceEl.classList.add('neutral');
+    }
+  }
 
   // Add delete listeners
   document.querySelectorAll('[data-income-id]').forEach(btn => {

@@ -3,3 +3,9 @@ export interface IBudgetItem {
     description: string;
     category: string;
 }
+
+
+export interface IBudgetData {
+    incomes: IBudgetItem[];
+    expenses: IBudgetItem[];
+}
