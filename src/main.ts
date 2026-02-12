@@ -1,3 +1,5 @@
+// @ts-ignore
+
 
 import './styles/style.scss';
 import categories from './categories.json';
@@ -8,10 +10,6 @@ let incomes: IBudgetItem[] = [];
 let expenses: IBudgetItem[] = [];
 
 function saveData() {
-  const data: IBudgetData = {
-    incomes,
-    expenses
-  };
   localStorage.setItem('budgetData', JSON.stringify({ incomes, expenses }));
 }
 
