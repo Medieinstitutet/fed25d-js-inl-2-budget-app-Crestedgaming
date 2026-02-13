@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>fed25d-js-inl-2-budget-app-crestedgaming</title>
+</head>
+
+<body>
+
+  <form id="income-form">
+    <h2>Add income</h2>
+
+    <label for="income-amount">Amount</label>
+    <input type="number" id="income-amount" required>
+
+    <label for="income-description">Description</label>
+    <input type="text" id="income-description" required>
+
+    <label for="income-category"></label>
+    <select id="income-category">
+      <option value="" disabled selected>Select category</option>
+    </select>
+
+    <button type="submit" id="add-income-btn">Add</button>
+  </form>
+
+
+  <form id="expense-form">
+    <h2>Add expense</h2>
+
+    <label for="expense-amount">Amount</label>
+    <input type="number" id="expense-amount" required>
+
+    <label for="expense-description">Description</label>
+    <input type="text" id="expense-description" required>
+
+    <label for="expense-category"></label>
+
+    <select id="expense-category">
+      <option value="" disabled selected>Select category</option>
+    </select>
+
+    <button id="add-expenses-btn">Add</button>
+  </form>
+
+  <section>
+    <h2>Incomes</h2>
+    <div id="income-list"></div>
+  </section>
+
+  <section>
+    <h2>Expenses</h2>
+    <div id="expense-list"></div>
+  </section>
+
+  <section>
+    <h2>Summary</h2>
+    <p>Total income: <strong id="total-income">0</strong>kr</p>
+    <p>Total expenses: <strong id="total-expenses">0</strong>kr</p>
+    <p>Balance: <strong id="balance">0</strong>kr</p>
+  </section>
+
+  <div id="app"></div>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+
+</html>

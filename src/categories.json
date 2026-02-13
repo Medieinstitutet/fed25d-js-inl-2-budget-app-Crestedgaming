@@ -1,0 +1,54 @@
+{
+    "expenses": [
+        {
+            "text": "Boende",
+            "value": "living"
+        },
+        {
+            "text": "Nöje",
+            "value": "entertainment"
+        },
+        {
+            "text": "Mat & Dryck",
+            "value": "food_drink"
+        },
+        {
+            "text": "Shopping",
+            "value": "shopping"
+        },
+        {
+            "text": "Hälsa & Skönhet",
+            "value": "health_beauty"
+        },
+        {
+            "text": "Resor & Transport",
+            "value": "travel_transport"
+        },
+        {
+            "text": "Utbildning",
+            "value": "education"
+        },
+        {
+            "text": "Tjänster",
+            "value": "services"
+        }
+    ],
+    "income": [
+        {
+            "text": "Lön",
+            "value": "salary"
+        },
+        {
+            "text": "Bonus",
+            "value": "bonus"
+        },
+        {
+            "text": "Gåvor",
+            "value": "gifts"
+        },
+        {
+            "text": "Övrigt",
+            "value": "other"
+        }
+    ]
+}
