@@ -33,8 +33,21 @@ This is a simple budget-app made as part of the course Front End Developer at Me
 
 ## 📁 Project Structure
 
-src/
-├── components/
-├── styles/
-├── main.js
-index.html
+```
+.
+├── index.html
+├── package.json
+├── tsconfig.json
+├── vite.config.js
+├── eslint.config.ts
+├── pseudokod.md
+├── README.md
+├── public/
+└── src/
+    ├── main.ts
+    ├── models.ts
+    ├── counter.js
+    ├── categories.json
+    └── styles/
+        └── style.scss
+```
